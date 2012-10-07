@@ -1,3 +1,9 @@
 Tiny
 
 Tiny is a simple MVC Framework in development by Jacob9706
+
+to test the framework put it in a LAMP enviorment and navegate to 
+
+www.yourwebaddres.com/index.php/news/index/var1=val1
+
+www.yourwebaddres.com/index.php/news/test/article=test
