@@ -28,20 +28,22 @@ require_once 'system/core/Controller.php';
 require_once 'system/core/View.php';
 
 // Get the passed request
-$request = $_SERVER['QUERY_STRING'];
+$request = 	$_SERVER['PATH_INFO'];
 
 // Explode and get variables
-$parsed = explode('&', $request);
+$parsed = explode('/', $request);
+
+// Remove empty slot in array caused by leading '/'
+array_shift($parsed);
 
 // The page is first element
 $page = array_shift($parsed);
-list($tmp_page, $page) = split('=', $page);
 
 $page = empty($page) ? 'index' : $page;
 
 // The method is second element
 $method = array_shift($parsed);
-list($tmp_method, $method) = split('=', $method);
+// list($tmp_method, $method) = split('=', $method);
 
 $method = empty($method) ? 'index' : $method;
 
