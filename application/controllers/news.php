@@ -16,9 +16,15 @@ class News_Controller extends Tiny_Controller
 	public function test(array $getVars)
 	{
 		$this->load('model', 'news');
+		$this->load('helper', 'forms');
 
-		$article = $this->model->news->get_article($getVars['article']);
+		$this->forms->add('TextElement', array("name", "id", "class", "lable"));
+		$this->forms->add('SubmitElement', array("submit_button", "id2", "class2", "Submit"));
 
-		$this->load->view(array($this->template, 'templates/footer'), $article);
+		$data['article'] = $this->model->news->get_article($getVars['article']);
+		$data['form'] = $this->forms;
+		$data['database_data'] = $this->model->news->database_example();
+
+		$this->load->view(array($this->template, 'templates/footer'), $data);
 	}
 }

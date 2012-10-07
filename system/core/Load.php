@@ -26,4 +26,10 @@ class Load
 			$context->model->$model = new $class;
 		}
 	}
+
+	private function file_get_php_classes($filepath) {
+		$php_code = file_get_contents($filepath);
+		$classes = get_php_classes($php_code);
+		return $classes;
+	}
 }

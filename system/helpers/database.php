@@ -58,14 +58,12 @@ class Database
 		}
 	}
 
-	public function get($makeResultSet = false)
+	public function get($makeResultSet = false, $associativeOnly = true)
 	{
-		// Debug info
-		echo $this->query;
 		$results = $this->dbh->query($this->query);
 		
 		if ($makeResultSet) {
-			$results = $results->fetchAll();
+			$results = $results->fetchAll(($associativeOnly ? PDO::FETCH_ASSOC : PDO::FETCH_BOTH));
 		}
 
 		$this->last_query = $this->query;
@@ -130,9 +128,6 @@ class Database
 			$debug = debug_backtrace();
 			die('Error: Both columns_to_set and new_values in ' . $debug[0]['function'] . '() must be both arrays or individual variables, ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
 		}
-
-		// Debug info
-		echo $this->query;
 	}
 
 	public function getCurrentQueryString()
