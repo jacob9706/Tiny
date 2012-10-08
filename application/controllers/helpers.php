@@ -2,6 +2,11 @@
 
 class Helpers_Controller extends Tiny_Controller
 {
+	/**
+	 * [status description]
+	 * @param  [type] $vars [description]
+	 * @return [type]
+	 */
 	public function status($vars)
 	{
 		$this->load('helper', 'html');

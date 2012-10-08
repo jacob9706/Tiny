@@ -8,9 +8,9 @@
     <!-- Here is where we loop through our $posts array, printing out post info -->
     <?php foreach ($posts as $post): ?>
     <tr>
-        <td><?php echo $html->create_link('post', 'show', $post['id'], array('id' => $post['id'])); ?></td>
+        <td><?php echo $html->create_link('post', 'show', $post['id'], array('id' =>$post['id'])); ?></td>
         <td>
-            <?php echo $post['title']; ?>
+            <?php echo $html->create_link('post', 'show', $post['title'], array('id' =>$post['id'])); ?>
         </td>
     </tr>
     <?php endforeach; ?>
