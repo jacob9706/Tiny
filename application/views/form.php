@@ -7,5 +7,5 @@ $form->add("TextElement", array('post', 'post', '', 'Post'));
 $form->add("SubmitElement", array('submit', 'submit', '', 'Submit'));
 $form->render('', '', '', '<br>');
 
-echo $html->create_link('post', 'index', 'Home');
+echo $html->create_a('post', 'index', 'Home');
 ?>
