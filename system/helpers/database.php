@@ -22,13 +22,16 @@ class Database
 			}
 		}  
 		catch(PDOException $e) {  
-			echo $e->getMessage();
+			die($e->getMessage());
+		}
+
+		if ($GLOBALS['CONFIG_GENERAL']['mode'] == "dev") {
+			$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
 	}
 
 	public function insert($table, $arrayOfValues)
 	{
-		// $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$query = 'INSERT INTO ' . $table;
 		$columns = '';
 		$values = '';
@@ -166,7 +169,7 @@ class Database
 	{
         // $input = htmlentities($input); // convert symbols to html entities
         $input = addslashes($input); // server doesn't add slashes, so we will add them to escape ',",\,NULL
-        $input = mysql_real_escape_string($input); // escapes \x00, \n, \r, \, ', " and \x1a
+        $input = mysql_escape_string($input); // escapes \x00, \n, \r, \, ', " and \x1a
         return $input;
     }
 

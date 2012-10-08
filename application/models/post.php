@@ -25,7 +25,7 @@ class Post_Model extends Tiny_Model
 	}
 
 	public function search_posts($search_string)
-	{
+	{	
 		// Select id and title from posts
 		$this->database->select('id, title', 'posts');
 		// Where title is like $search_string
