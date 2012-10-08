@@ -5,3 +5,8 @@ Tiny is a simple MVC Framework in development by Jacob9706
 to test the framework put it in a LAMP enviorment and navegate to 
 
 http://localhost/tiny/index.php/post/index/
+
+To create your own project in linux open a terminal and use the folling commands
+
+cd /var/www
+python <path to tiny.py> new-project <project name>
