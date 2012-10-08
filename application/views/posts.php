@@ -1,4 +1,12 @@
 <h1>Blog posts</h1>
+
+<?php
+$form->setup('search_form');
+$form->add("TextElement", array('search', 'search', '', 'Search Posts'));
+$form->add("SubmitElement", array('submit', 'submit', '', 'Search'));
+$form->render();
+?>
+
 <table>
     <tr>
         <th>Id</th>

@@ -14,13 +14,19 @@ class Post_Controller extends Tiny_Controller
 		// These loads can be done on construction or individually in each method.
 	}
 
-	public function index()
+	public function index($vars)
 	{
-		$data['posts'] = $this->model->post->get_post('all');
+		if (isset($_POST['search'])) {
+			$data['posts'] = $this->model->post->search_posts($_POST['search']);
+		}else {
+			$data['posts'] = $this->model->post->get_post('all');			
+		}
 		$data['title'] = "Post List";
 		// Pass HTML helper to view
 		$data['html'] = $this->html;
 		// Optionally you could rener the html here and pass a string to echo
+
+		$data['form'] = $this->forms;
 
 		$this->load->view(array('templates/header', 'posts', 'templates/footer'), $data);
 	}

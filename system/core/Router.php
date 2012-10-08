@@ -50,9 +50,13 @@ $method = empty($method) ? 'index' : $method;
 
 $getVars = array();
 foreach ($parsed as $argument) {
-	// Split GET vars along "=" symbol to separate variable => values
-	list($variable, $value) = split('=', $argument);
-	$getVars[urldecode($variable)] = urldecode($value);
+	if (strpos($argument, "=")) {
+		// Split GET vars along "=" symbol to separate variable => values
+		list($variable, $value) = split('=', $argument);
+		$getVars[urldecode($variable)] = urldecode($value);
+	} else {
+		$getVars[] = urldecode($argument);
+	}
 }
 
 // Make path to the file
