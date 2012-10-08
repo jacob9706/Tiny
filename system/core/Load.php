@@ -2,7 +2,7 @@
 
 class Load
 {
-	public function view($templates, $variables)
+	public function view($templates, $variables = array())
 	{
 		new View_Model($templates, $variables);
 	}
@@ -27,9 +27,17 @@ class Load
 		}
 	}
 
-	private function file_get_php_classes($filepath) {
-		$php_code = file_get_contents($filepath);
-		$classes = get_php_classes($php_code);
-		return $classes;
+	public function redirect($controller, $method = 'index', $variables = "")
+	{
+		$vars = array();
+		if (is_array($variables)) {
+			foreach ($variables as $key => $value) {
+				$vars[] = urlencode($key) . '=' . urlencode($value);
+			}
+			$vars = implode("/", $vars);
+		} else {
+			$vars = $variables;
+		}
+		header('Location: http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $controller . '/' . $method . '/' . $vars);
 	}
 }

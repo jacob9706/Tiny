@@ -26,6 +26,33 @@ class Database
 		}
 	}
 
+	public function insert($table, $arrayOfValues)
+	{
+		// $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$query = 'INSERT INTO ' . $table;
+		$columns = '';
+		$values = '';
+		$executeVar = array();
+		if ($this->isAssoc($arrayOfValues)) {
+			$delimiter = '';
+			foreach ($arrayOfValues as $column =>$value) {
+				$columns .= $delimiter . $column;
+				$values .= $delimiter . ':' . $column;
+				$executeVar[(':' . $column)] = $value;
+				$delimiter = ', ';
+			}
+
+			$query .= '(' . $columns . ')' . ' VALUES(' . $values . ')';
+			echo $query;
+			print_r($executeVar);
+			$query = $this->dbh->prepare($query);
+			return $query->execute($executeVar);
+		} else {
+			$debug = debug_backtrace();
+			die('Error: Second param of ' . $debug[0]['function'] . '() must be an associative array, ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
+		}
+	}
+
 	public function query($query)
 	{
 		return $this->dbh->query($query);
@@ -43,7 +70,7 @@ class Database
 				if (sizeof($columns) == sizeof($values)) {
 					$separator = ' WHERE ';
 					for ($i = 0; $i < sizeof($columns); $i++) {
-						$this->query .= $separator . $columns[$i] . ' ' . (is_array($logic) ? $logic[$i] : $logic) . ' ' . (is_string($values[$i]) ? "'".$values[$i]."'": $values[$i]);
+						$this->query .= $separator . $columns[$i] . ' ' . (is_array($logic) ? $logic[$i] : $logic) . ' ' . (is_string($values[$i]) ? "'".$this->sanitize($values[$i])."'": $this->sanitize($values[$i]));
 						$separator = ' ' . (is_array($orOrAnd) ? ($i >= sizeof($orOrAnd) ? "" : $orOrAnd[$i]) : $orOrAnd) . ' ';
 					}
 				} else {
@@ -51,7 +78,7 @@ class Database
 					die('Error: Size of arrays in ' . $debug[0]['function'] . '() must be the same length, ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
 				}
 			} else if (!is_array($columns) && !is_array($values)) {
-				$this->query .= ' WHERE ' . $columns . ' ' . $logic . ' ' . ($logic == "LIKE" || $logic == 'like' ? ("'" . $values . "'") : (is_string($values) ? "'".$values."'": $values));
+				$this->query .= ' WHERE ' . $columns . ' ' . $logic . ' ' . ($logic == "LIKE" || $logic == 'like' ? ("'" . $this->sanitize($values) . "'") : (is_string($values) ? "'".$this->sanitize($values)."'": $this->sanitize($values)));
 			}
 		} else {
 			echo 'The query is empty';
@@ -133,5 +160,18 @@ class Database
 	public function getCurrentQueryString()
 	{
 		return $this->query;
+	}
+
+	private function sanitize($input)
+	{
+        // $input = htmlentities($input); // convert symbols to html entities
+        $input = addslashes($input); // server doesn't add slashes, so we will add them to escape ',",\,NULL
+        $input = mysql_real_escape_string($input); // escapes \x00, \n, \r, \, ', " and \x1a
+        return $input;
+    }
+
+    private function isAssoc($arr)
+	{
+		return array_keys($arr) !== range(0, count($arr) - 1);
 	}
 }

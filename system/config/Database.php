@@ -25,4 +25,4 @@ $CONFIG_DB['host'] = 'localhost';
 /**
  * Defines the name of the database you want to access. If you are using sqlite this will be the path to the database file.
  */
-$CONFIG_DB['db_name'] = ':memory:';
+$CONFIG_DB['db_name'] = 'application/databases/blog.sqlite';

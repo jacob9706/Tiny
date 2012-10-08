@@ -38,12 +38,13 @@ array_shift($parsed);
 
 // The page is first element
 $page = array_shift($parsed);
+urldecode($page);
 
 $page = empty($page) ? 'index' : $page;
 
 // The method is second element
 $method = array_shift($parsed);
-// list($tmp_method, $method) = split('=', $method);
+urldecode($method);
 
 $method = empty($method) ? 'index' : $method;
 
@@ -51,7 +52,7 @@ $getVars = array();
 foreach ($parsed as $argument) {
 	// Split GET vars along "=" symbol to separate variable => values
 	list($variable, $value) = split('=', $argument);
-	$getVars[$variable] = $value;
+	$getVars[urldecode($variable)] = urldecode($value);
 }
 
 // Make path to the file

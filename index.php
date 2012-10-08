@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 define('DS', DIRECTORY_SEPARATOR);
 
 $url = $_GET['url'];

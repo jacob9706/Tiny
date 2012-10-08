@@ -35,6 +35,11 @@ class Forms
 
     public function render($id = "", $class = "", $beforeEachElement = "", $afterEachElement = "")
     {
+        if (!empty($this->redirectLocation)) {
+            if (!strpos($this->redirectLocation, "://")) {
+                $this->redirectLocation = 'http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $this->redirectLocation;
+            }
+        }
         $html = "<form method='post' action='{$this->redirectLocation}' id='{$id}' class='{$class}'>";
         foreach ($this->elements as $element) {
             $html .= $beforeEachElement;
@@ -267,7 +272,7 @@ class SubmitElement extends FormElement
 {
     public function __construct($args)
     {
-        parent::__construct($args[0], $args[1], $args[2], $args[3]);
+        parent::__construct($args);
     }
 
     public function generateHTML()
