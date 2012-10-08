@@ -1,25 +1,5 @@
 <?php
 
-/*function __autoload($className)
-{
-	// Parse out filename where class should be
-	list($filename, $suffix) = split('_', $className);
-
-	// Make filename
-	$file = 'application/models/' . strtolower($filename) . '.php';
-
-	if (file_exists($file)) {
-		include_once $file;
-	} else {
-		$file = 'system/core/View.php';
-		if (file_exists($file)) {
-			include_once $file;
-		} else {
-			die('File' . $file . ' containing class ' . $className . ' not found');
-		}
-	}
-}*/
-
 require_once 'system/config/General.php';
 require_once 'system/config/Database.php';
 
@@ -60,7 +40,7 @@ class Router {
 		foreach ($parsed as $argument) {
 			if (strpos($argument, "=")) {
 				// Split GET vars along "=" symbol to separate variable => values
-				list($variable, $value) = split('=', $argument);
+				list($variable, $value) = explode('=', $argument);
 				$getVars[urldecode($variable)] = urldecode($value);
 			} else {
 				$getVars[] = urldecode($argument);
