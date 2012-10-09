@@ -1,0 +1,826 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"or",
+				"orOrAnd"
+			],
+			[
+				"colu",
+				"columns"
+			],
+			[
+				"col",
+				"columns"
+			],
+			[
+				"argum",
+				"arguments"
+			],
+			[
+				"req",
+				"require_once"
+			],
+			[
+				"exe",
+				"executeVar"
+			],
+			[
+				"array",
+				"arrayOfValues"
+			],
+			[
+				"colum",
+				"columns"
+			],
+			[
+				"url",
+				"urldecode"
+			],
+			[
+				"is_nu",
+				"is_numeric"
+			],
+			[
+				"con",
+				"controller"
+			],
+			[
+				"class",
+				"class_name"
+			],
+			[
+				"func",
+				"func_get_arg"
+			],
+			[
+				"file_g",
+				"file_get_php_classes"
+			],
+			[
+				"where",
+				"where_columns"
+			],
+			[
+				"new",
+				"new_values"
+			],
+			[
+				"column",
+				"columns_to_set"
+			],
+			[
+				"resul",
+				"results"
+			],
+			[
+				"tem",
+				"templates"
+			],
+			[
+				"clas",
+				"className"
+			],
+			[
+				"method",
+				"method_exists"
+			],
+			[
+				"get",
+				"getVars"
+			],
+			[
+				"is",
+				"is_array"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"size",
+				"sizeof"
+			],
+			[
+				"strrep",
+				"str_replace"
+			],
+			[
+				"date",
+				"date2mysql"
+			],
+			[
+				"page",
+				"pageLink"
+			],
+			[
+				"men",
+				"menuColor"
+			],
+			[
+				"menu",
+				"menuLink"
+			],
+			[
+				"end",
+				"endTitle"
+			],
+			[
+				"sta",
+				"startTitle"
+			],
+			[
+				"local",
+				"localhost"
+			],
+			[
+				"Dj",
+				"DjangoProjects"
+			],
+			[
+				"Met",
+				"MetroUiElement"
+			],
+			[
+				"HttpR",
+				"HttpResponseRedirect"
+			],
+			[
+				"Create",
+				"CreateForm"
+			],
+			[
+				"Cre",
+				"CreateForm"
+			],
+			[
+				"create",
+				"user_create"
+			],
+			[
+				"pas",
+				"password_length"
+			],
+			[
+				"user",
+				"username_length"
+			],
+			[
+				"requ",
+				"request"
+			],
+			[
+				"aut",
+				"authenticate"
+			],
+			[
+				"mode",
+				"modelformset_factory"
+			],
+			[
+				"Post",
+				"PostForm"
+			],
+			[
+				"Mod",
+				"ModelForm	ModelForm"
+			],
+			[
+				"ma",
+				"max_length"
+			],
+			[
+				"render",
+				"render_to_response"
+			],
+			[
+				"conte",
+				"context_instance"
+			],
+			[
+				"rend",
+				"render_to_response"
+			],
+			[
+				"poll",
+				"poll_id"
+			],
+			[
+				"get_",
+				"get_object_or_404"
+			],
+			[
+				"h",
+				"HttpResponse"
+			],
+			[
+				"Poll",
+				"PollAdmin"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "system/helpers/database.php",
+			"settings":
+			{
+				"buffer_size": 9668,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/builds/PHP-Lint.sublime-build",
+	"command_palette":
+	{
+		"height": 138.0,
+		"selected_items":
+		[
+			[
+				"show",
+				"Show TODOs: Open files only"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"todo",
+				"Snippet: Constant Definition"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"syntax cs",
+				"Set Syntax: CSS"
+			],
+			[
+				"lint",
+				"SublimeLinter: Disable Linting"
+			],
+			[
+				"",
+				"Package Control: List Packages"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"build",
+				"Build: Build"
+			],
+			[
+				"buil",
+				"Build: Build"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"brows",
+				"SFTP: Browse Remote…"
+			],
+			[
+				"bro",
+				"SFTP: Browse Server…"
+			],
+			[
+				"ftp",
+				"Preferences: SFTP Settings"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"rails",
+				"Set Syntax: HTML (Rails)"
+			],
+			[
+				"dja",
+				"Set Syntax: HTML (Django)"
+			],
+			[
+				"dJ",
+				"Set Syntax: Python Django"
+			],
+			[
+				"Dja",
+				"Set Syntax: HTML (Django)"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python Django"
+			],
+			[
+				"Dj",
+				"Set Syntax: Python Django"
+			],
+			[
+				"setDj",
+				"Set Syntax: Python Django"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"save",
+				"File: Save All"
+			],
+			[
+				"dj",
+				"Set Syntax: Python Django"
+			],
+			[
+				"pyton",
+				"User: Python PEP8 Autoformat"
+			],
+			[
+				"pep",
+				"User: Python PEP8 Autoformat"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"python",
+				"User: Python PEP8 Autoformat"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 111.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/var/www/tiny/application/models/post.php",
+		"/var/www/tiny/TinyMVCHelpers/TinyProjectOutline/system/helpers/database.php",
+		"/var/www/tiny/TinyMVCHelpers/tiny.py",
+		"/var/www/tiny/TinyMVCHelpers/tiny.php",
+		"/var/www/tiny/README",
+		"/var/www/tiny/application/controllers/index.php",
+		"/var/www/tiny/application/views/index.php",
+		"/var/www/tiny/TinyMVCHelpers/TinyProjectOutline/application/views/templates/header.php",
+		"/var/www/tiny/TinyMVCHelpers/TinyProjectOutline/application/views/index.php",
+		"/var/www/tiny/index.php",
+		"/home/jacob9706/.cache/.fr-OIHceZ/example.php",
+		"/home/jacob9706/.cache/.fr-NQe3RS/example.php",
+		"/home/jacob9706/.cache/.fr-Qncjvo/bench-class.php",
+		"/home/jacob9706/.cache/.fr-w4H2e4/bench.php",
+		"/var/www/tiny/system/helpers/database.php",
+		"/var/www/tiny/application/views/post.php",
+		"/var/www/tiny/system/helpers/html.php",
+		"/var/www/tiny/application/controllers/post.php",
+		"/var/www/tiny/TinyMVCHelpers/TinyProjectOutline/application/controllers/index.php",
+		"/var/www/tiny/system/core/Router.php",
+		"/var/www/testProject/application/views/index.php",
+		"/var/www/testProject/application/controllers/index.php",
+		"/var/www/tiny/system/config/Database.php",
+		"/var/www/mvctest/application/controllers/index.php",
+		"/var/www/mvctest/application/views/index.php",
+		"/var/www/mvctest/index.php",
+		"/var/www/mvctest/system/core/Router.php",
+		"/var/www/mvctest/system/helpers/html.php",
+		"/var/www/mvctest/application/views/templates/header.php",
+		"/var/www/tiny/system/config/General.php",
+		"/home/jacob9706/Desktop/TinyProjectOutline/css/styles.css",
+		"/var/www/tiny/application/controllers/helpers.php",
+		"/var/www/tiny/application/views/form.php",
+		"/var/www/tiny/application/views/posts.php",
+		"/home/jacob9706/Desktop/TinyProjectOutline/application/views/templates/header.php",
+		"/home/jacob9706/.config/sublime-text-2/Packages/User/builds/PHP-Run.sublime-build",
+		"/var/www/tiny/application/views/helpers/status.php",
+		"/var/www/tiny/application/controllers/news.php",
+		"/var/www/tiny/application/models/news.php",
+		"/var/www/mvc/system/helpers/url_helper.php",
+		"/var/www/mvc/system/core/CodeIgniter.php",
+		"/var/www/mvc/system/core/Config.php",
+		"/var/www/mvc/application/controllers/upload.php",
+		"/var/www/mvc/system/helpers/form_helper.php",
+		"/var/www/tiny/system/core/View.php",
+		"/var/www/tiny/system/core/Tools.php",
+		"/var/www/tiny/system/core/Load.php",
+		"/var/www/tiny/application/views/templates/header.php",
+		"/var/www/tiny/system/helpers/forms.php",
+		"/home/jacob9706/Desktop/tiny.py",
+		"/home/jacob9706/Desktop/TinyProjectOutline/system/config/Database.php",
+		"/home/jacob9706/Desktop/TinyProjectOutline/application/controllers/index.php",
+		"/home/jacob9706/Desktop/TinyProjectOutline/application/views/index.php",
+		"/home/jacob9706/Desktop/TinyProjectOutline/application/models/index.php",
+		"/var/www/mvc/system/helpers/path_helper.php",
+		"/var/www/mvc/system/helpers/html_helper.php",
+		"/var/www/tiny/application/databases/blog.sqlite",
+		"/var/www/tiny/application/models/posts.php",
+		"/var/www/tiny/application/views/news.php",
+		"/var/www/tiny/application/views/templates/footer.php",
+		"/var/www/mvc/system/core/Router.php",
+		"/var/www/tiny/system/core/Model.php",
+		"/var/www/tiny/system/core/Controller.php",
+		"/var/www/tiny/.htaccess",
+		"/var/www/mvc/index.php",
+		"/var/www/tiny/sftp-config.json",
+		"/home/jacob9706/.config/sublime-text-2/Packages/SFTP/SFTP.sublime-settings",
+		"/etc/apache2/httpd.conf",
+		"/var/www/tiny/system/core/Load",
+		"/var/www/tiny/system/core/TinyMcv.php",
+		"/var/www/tiny/application/Model/news.php",
+		"/var/www/tiny/system/core/TinyMcv",
+		"/var/www/tiny/Framework/Model.php",
+		"/var/www/tiny/library/bootstrap.php",
+		"/home/jacob9706/Documents/LAMP",
+		"/var/www/tiny/Framework/TinyMCV.php",
+		"/var/www/tinyMvc/index.php",
+		"/var/www/tinyMvc/Framework/TinyMCV",
+		"/var/www/tinyMvc/Framework/Load.php",
+		"/var/www/tinyMvc/Framework/Controller.php",
+		"/var/www/tinyMvc/Framework/Model.php",
+		"/var/www/tinyMvc/Application/Views/subview.php",
+		"/var/www/tinyMvc/.htaccess",
+		"/home/jacob9706/.cache/.fr-qrRFxy/application/controllers/upload.php",
+		"/var/www/mvc/application/views/forms/upload_form.php",
+		"/var/www/mvc/application/libraries/Multi_upload.php",
+		"/var/www/mvc/application/views/admin/success/upload_success.php",
+		"/home/jacob9706/myfirstapp/data/ui/MyfirstappWindow.ui",
+		"/home/jacob9706/.cache/.fr-IbzZUU/ci_series/application/models/gallery_model.php",
+		"/var/www/mvc/application/views/templates/header.php",
+		"/var/www/mvc/application/views/templates/footer.php",
+		"/home/jacob9706/Documents/DjangoProjects/robotics/mainapp/templates/index.html",
+		"/var/www/windows/resources/css/window.css",
+		"/var/www/windows/resources/css/startmenu.css",
+		"/home/jacob9706/Documents/DjangoProjects/robotics/mainapp/views.py",
+		"/home/jacob9706/Documents/DjangoProjects/isanyoneup/isanyoneup/mainapp/models.py",
+		"/home/jacob9706/Documents/DjangoProjects/isanyoneup/isanyoneup/mainapp/views.py",
+		"/home/jacob9706/Documents/DjangoProjects/robotics/mainapp/models.py",
+		"/home/jacob9706/Documents/DjangoProjects/robotics/robotics/urls.py",
+		"/home/jacob9706/Documents/DjangoProjects/isanyoneup/isanyoneup/isanyoneup/urls.py",
+		"/home/jacob9706/Documents/DjangoProjects/isanyoneup/isanyoneup/jacob/metro/MetroUi.py",
+		"/var/www/blog/app/controllers/comments_controller.rb",
+		"/var/www/blog/app/models/comment.rb",
+		"/var/www/blog/app/controllers/posts_controller.rb",
+		"/var/www/blog/app/views/home/index.html.erb",
+		"/var/www/blog/app/models/post.rb",
+		"/var/www/blog/config/routes.rb",
+		"/var/www/windows/resources/js/window.js",
+		"/var/www/windows/index.html",
+		"/var/www/demo_app/Gemfile",
+		"/var/www/blog/config/database.yml",
+		"/home/jacob9706/Desktop/olton-Metro-UI-CSS-a44861a/new-demo/index.html",
+		"/var/www/windows/resources/css/jquery-ui.css",
+		"/var/www/hellojs/app.js",
+		"/var/www/hellojs/index.html",
+		"/var/www/windows/css/window.css",
+		"/var/www/windows/resources/js/jquery.js",
+		"/var/www/windows/css/startmenu.css",
+		"/var/www/robotics/index.php",
+		"/home/jacob9706/Desktop/olton-Metro-UI-CSS-a44861a/README",
+		"/var/www/robotics/pages/parts.php",
+		"/var/www/robotics/js/tiles.js",
+		"/var/www/robotics/js/config.js",
+		"/var/www/robotics/pages/facts.html",
+		"/var/www/robotics/config.php",
+		"/var/www/robotics/pages/parts.html",
+		"/var/www/robotics/js/main.js",
+		"/var/www/robotics/pages/eventlist.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/var/www/mvctest",
+			"/var/www/tiny"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\n",
+			"isAssoc",
+			"sanitize",
+			"split(",
+			"create_link",
+			"']));",
+			"site",
+			"site_url",
+			"request",
+			"_validate_request",
+			"oldvalues",
+			"old_values",
+			"old_value",
+			".classname",
+			".window .top .title button",
+			".classname",
+			"style=\"height: 100px",
+			"src=\"images",
+			"</div>",
+			"<hr>",
+			"<a",
+			"</p>",
+			"<img",
+			"<!--/row-->",
+			"</div>",
+			"<div class=\"span3\">",
+			"<div class=\"row-fluid\">",
+			"error",
+			"error_re",
+			"error",
+			"$",
+			"href=\"#__",
+			"images",
+			"</i>",
+			"<i>",
+			".gif",
+			".png",
+			".jpg",
+			"src=\"",
+			"root",
+			"static",
+			"gedit.desktop"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"create_a",
+			"old_values",
+			"oldvalues",
+			".window .top button",
+			".window .top .title button",
+			".window .title button",
+			"style=\"height: 100px; margin-right: 10px;",
+			"src=\"img/parts",
+			"</div><br>",
+			"",
+			"<hr><div style=\"clear: both;\"></div>",
+			"<a style=\"float:left;\"",
+			"</p><hr>",
+			"<img style=\"height: 100px\" ",
+			"",
+			"onClick=\"return false;\" href=\"#__",
+			"img/documents",
+			"</em>",
+			"<em>",
+			".gif' %}",
+			".png' %}",
+			".jpg' %}",
+			"src=\"{% static '",
+			"sublime.desktop"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "system/helpers/database.php",
+					"settings":
+					{
+						"buffer_size": 9668,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6174,
+								6174
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1866.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 141.0
+	},
+	"output.sftp":
+	{
+		"height": 88.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/home/jacob9706/Documents/DjangoProjects/isanyoneup/isanyoneup.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
