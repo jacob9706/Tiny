@@ -63,10 +63,17 @@ class Database
 		}
 	}
 
-	// FIXME: Change to PDO
-	public function query($query)
+	/**
+	 * Perform query
+	 * @param  string $query  Query String
+	 * @param  array  $params Array to pass to pdo prepare
+	 * @return [type]         Query results
+	 */
+	public function query($query, array $params = array())
 	{
-		return $this->dbh->query($query);
+		$query = $this->dbh->prepare($query);
+		$query->execute($params);
+		return $query;
 	}
 
 	/**

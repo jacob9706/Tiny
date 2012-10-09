@@ -14,7 +14,9 @@ class Post_Model extends Tiny_Model
 
 		if ($id == 'all')
 		{
-			return $this->database->get(true, true);
+			$results =  $this->database->query('SELECT * FROM posts');
+			return $results->fetchAll();
+			// return $this->database->get(true, true);
 		}
 
 		$this->database->where('id', '=', $id);
