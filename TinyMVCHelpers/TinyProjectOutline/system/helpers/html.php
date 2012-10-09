@@ -2,6 +2,14 @@
 
 class HTML
 {
+	/**
+	 * Method to help create links to methods in controlelrs
+	 * @param  string $controller
+	 * @param  string $method
+	 * @param  string $text
+	 * @param  string $variables  This can be an array or string. The array can be associative or indexed
+	 * @return string             A string containing a formated anchor tag
+	 */
 	public function create_a($controller, $method, $text, $variables = "")
 	{
 		$vars = array();
@@ -16,6 +24,13 @@ class HTML
 		return '<a href="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $controller . '/' . $method . "/" . $vars . '">' . $text . '</a>';
 	}
 
+	/**
+	 * Method to help create links to stylesheets
+	 * @param  string $file Path to file within project directory
+	 * @param  string $type Defaults to text/css
+	 * @param  string $rel  Defaults to stylesheet
+	 * @return string       A string containing a formated link tag
+	 */
 	public function create_link($file, $type="text/css", $rel="stylesheet")
 	{
 		return '<link href="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" type="' . $type . '" rel="' . $rel .'">';

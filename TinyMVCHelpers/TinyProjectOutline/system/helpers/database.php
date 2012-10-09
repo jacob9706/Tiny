@@ -5,6 +5,7 @@ class Database
 	private $dbh = null;
 	private $query = "";
 	private $last_query = "";
+	private $values = array();
 
 	public function __construct()
 	{
@@ -30,7 +31,13 @@ class Database
 		}
 	}
 
-	public function insert($table, $arrayOfValues)
+	/**
+	 * Insert into database using PDO prepare
+	 * @param  String $table         Table to insert into
+	 * @param  Array $arrayOfValues Associative array of column => value
+	 * @return boolean                Wether insert succeeded
+	 */
+	public function insert($table, Array $arrayOfValues)
 	{
 		$query = 'INSERT INTO ' . $table;
 		$columns = '';
@@ -56,41 +63,97 @@ class Database
 		}
 	}
 
+	// FIXME: Change to PDO
 	public function query($query)
 	{
 		return $this->dbh->query($query);
 	}
 
-	public function select($column, $table)
+	/**
+	 * Create SELECT statement
+	 * @param  [type] $columns array or string
+	 * @param  string $table  string
+	 */
+	public function select($columns, $table)
 	{
-		$this->query = 'SELECT ' . $column . ' FROM ' . $table; 
+		if (is_array($columns)) {
+			$this->query = 'SELECT';
+			$delimiter = ' ';
+			foreach ($columns as $column) {
+				$this->query .= $delimiter . $column;
+				$delimiter = ', ';
+			}
+			$this->query .= ' FROM ' . $table;
+		} else {
+			$this->query = 'SELECT ' . $columns . ' FROM ' . $table;			
+		}
 	}
 
+	/**
+	 * Add WHERE statement to existing query
+	 * @param  [type] $columns a string value or a indexed array
+	 * @param  [type] $logic   a string value or a indexed array
+	 * @param  [type] $values  a string value or a indexed array
+	 * @param  [type] $orOrAnd a string value or a indexed array
+	 */
 	public function where($columns, $logic, $values, $orOrAnd = 'and')
 	{
 		if (!empty($this->query)) {
 			if (is_array($columns) && is_array($values)) {
 				if (sizeof($columns) == sizeof($values)) {
-					$separator = ' WHERE ';
-					for ($i = 0; $i < sizeof($columns); $i++) {
-						$this->query .= $separator . $columns[$i] . ' ' . (is_array($logic) ? $logic[$i] : $logic) . ' ' . (is_string($values[$i]) ? "'".$this->sanitize($values[$i])."'": $this->sanitize($values[$i]));
-						$separator = ' ' . (is_array($orOrAnd) ? ($i >= sizeof($orOrAnd) ? "" : $orOrAnd[$i]) : $orOrAnd) . ' ';
+					if (is_array($logic) && sizeof($logic) != sizeof($columns)) {
+						$debug = debug_backtrace();
+						die('Error: Size of logic array in ' . $debug[0]['function'] . '() must be the same length as columns array, ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
 					}
+					if (is_array($orOrAnd) && sizeof($orOrAnd) < sizeof($columns) - 1) {
+						$debug = debug_backtrace();
+						die('Error: Size of orOrAnd array in ' . $debug[0]['function'] . '() must be the same length as columns array, ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
+					}
+					if (is_array($orOrAnd)) {
+						$orOrAnd[] = "and";
+					}
+					$separator = ' WHERE ';
+					for($i = 0; $i < sizeof($columns); $i++) {
+						$this->query .= $separator . $columns[$i] . ' ' . (is_array($logic) ? $logic[$i] : $logic) . ' ?';
+						$separator = ' ' . (is_array($orOrAnd) ? $orOrAnd[$i] : $orOrAnd) . ' ';
+					}
+					$this->values = $values;
 				} else {
 					$debug = debug_backtrace();
 					die('Error: Size of arrays in ' . $debug[0]['function'] . '() must be the same length, ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
 				}
-			} else if (!is_array($columns) && !is_array($values)) {
-				$this->query .= ' WHERE ' . $columns . ' ' . $logic . ' ' . ($logic == "LIKE" || $logic == 'like' ? ("'" . $this->sanitize($values) . "'") : (is_string($values) ? "'".$this->sanitize($values)."'": $this->sanitize($values)));
+			} elseif (!is_array($columns) && !is_array($values)) {
+				if (!is_array($logic)) {
+					$this->query .= ' WHERE ' . $columns . ' ' . $logic . ' ?';
+					$this->values = $values;			
+				} else {
+					$debug = debug_backtrace();
+					die('Error: logic must be string when cloumns and values are in ' . $debug[0]['function'] . '(), ' . $debug[0]['file'] . ": line " . $debug[0]['line']);					
+				}
+			} else {
+				$debug = debug_backtrace();
+				die('Error: columns and values must be the same var type (string or array) in ' . $debug[0]['function'] . '(), ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
 			}
 		} else {
-			echo 'The query is empty';
+			$debug = debug_backtrace();
+			die('Error: query is empty in ' . $debug[0]['function'] . '(), ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
 		}
 	}
 
+	/**
+	 * Query database with generated or set query
+	 * @param  boolean $makeResultSet   if true returns a array of results, else returns PDO is_object
+	 * @param  boolean $associativeOnly if true will will create only associative array instead of indexed as well
+	 * @return [type]                   Array of results or PDO object
+	 */
 	public function get($makeResultSet = false, $associativeOnly = true)
 	{
-		$results = $this->dbh->query($this->query);
+		$results = $this->dbh->prepare($this->query);
+		if (is_array($this->values)) {
+			$results->execute($this->values);			
+		} else {
+			$results->execute(array($this->values));
+		}
 		
 		if ($makeResultSet) {
 			$results = $results->fetchAll(($associativeOnly ? PDO::FETCH_ASSOC : PDO::FETCH_BOTH));
@@ -102,6 +165,7 @@ class Database
 		return $results;
 	}
 
+	// FIXME: Change to PDO
 	public function update($table, $columns_to_set, $new_values, $where_columns, $logic, $old_values, $orOrAnd = "AND")
 	{
 		$this->query = 'UPDATE ' . $table . ' SET ';
@@ -160,18 +224,14 @@ class Database
 		}
 	}
 
+	/**
+	 * Returns current query string
+	 * @return String Current query string
+	 */
 	public function getCurrentQueryString()
 	{
 		return $this->query;
 	}
-
-	private function sanitize($input)
-	{
-        // $input = htmlentities($input); // convert symbols to html entities
-        $input = addslashes($input); // server doesn't add slashes, so we will add them to escape ',",\,NULL
-        $input = mysql_escape_string($input); // escapes \x00, \n, \r, \, ', " and \x1a
-        return $input;
-    }
 
     private function isAssoc($arr)
 	{

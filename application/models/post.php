@@ -27,9 +27,9 @@ class Post_Model extends Tiny_Model
 	public function search_posts($search_string)
 	{	
 		// Select id and title from posts
-		$this->database->select('id, title', 'posts');
+		$this->database->select(array('id', 'title'), 'posts');
 		// Where title is like $search_string
-		$this->database->where('title', 'LIKE', "%{$search_string}%");
+		$this->database->where(array('title', 'post'), 'LIKE', array("%{$search_string}%", "%{$search_string}%"), array('OR'));
 		// Execute query which ends up being "SELECT id, title FROM posts WHERE title LIKE '%{$searchString}%'"
 		// True is saying fetch my results for me, a second bool determines wheather to get an associative array or both (default true)
 		return $this->database->get(true);
