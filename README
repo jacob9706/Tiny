@@ -10,3 +10,8 @@ To create your own project in linux open a terminal and use the folling commands
 
 cd /var/www
 python <path to tiny.py> new-project <project name>
+
+or
+
+cd /var/www
+php <path to tiny.php> new-project <project name>
