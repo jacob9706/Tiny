@@ -16,8 +16,8 @@ class Router {
 	public function __construct()
 	{
 		// Get the passed request
-		if (!empty($_SERVER['PATH_INFO'])) {
-			$request = 	$_SERVER['PATH_INFO'];
+		if (!empty($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] != "/") {
+			$request = 	rtrim($_SERVER['PATH_INFO'], '/');
 
 			// Explode and get variables
 			$parsed = explode('/', $request);
