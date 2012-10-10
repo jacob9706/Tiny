@@ -148,6 +148,20 @@ class Database
 	}
 
 	/**
+	 * Add limit to query string
+	 * @param  integer $start   [description]
+	 * @param  integer $ammount [description]
+	 */
+	public function limit($start = 0, $ammount = 10) {
+		if (!empty($this->query)) {
+			$this->query .= ' LIMIT ' . $start . ', ' . $ammount;
+		} else {
+			$debug = debug_backtrace();
+			die('Error: query is empty in ' . $debug[0]['function'] . '(), ' . $debug[0]['file'] . ": line " . $debug[0]['line']);
+		}
+	}
+
+	/**
 	 * Query database with generated or set query
 	 * @param  boolean $makeResultSet   if true returns a array of results, else returns PDO is_object
 	 * @param  boolean $associativeOnly if true will will create only associative array instead of indexed as well

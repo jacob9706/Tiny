@@ -1,14 +1,18 @@
 <?php
 
+// Load Config Files
 require_once 'system/config/General.php';
 require_once 'system/config/Database.php';
 
+// Load Nessesary Classes
 require_once 'system/core/Tools.php';
 require_once 'system/core/Model.php';
 require_once 'system/core/Controller.php';
 require_once 'system/core/View.php';
 
 class Router {
+	private $getVars;
+
 	public function __construct()
 	{
 		// Get the passed request
@@ -36,14 +40,14 @@ class Router {
 
 		$method = empty($method) ? 'index' : $method;
 
-		$getVars = array();
+		$this->getVars = array();
 		foreach ($parsed as $argument) {
 			if (strpos($argument, "=")) {
 				// Split GET vars along "=" symbol to separate variable => values
 				list($variable, $value) = explode('=', $argument);
-				$getVars[urldecode($variable)] = urldecode($value);
+				$this->getVars[urldecode($variable)] = urldecode($value);
 			} else {
-				$getVars[] = urldecode($argument);
+				$this->getVars[] = urldecode($argument);
 			}
 		}
 
@@ -58,20 +62,37 @@ class Router {
 			if (class_exists($class)) {
 				$controller = new $class;
 			} else {
-				die('class does not exist.');
+				$this->throw_error();
 			}
 		} else {
-			die('page does not exist.');
+			$this->throw_error();
 		}
 
 		if (!empty($method)) {
 			if(method_exists($controller, $method)) {
-				$controller->$method($getVars);
+				$controller->$method($this->getVars);
 			} else {
-				die('method does not exist.');
+				$this->throw_error();
 			}
 		} else {
-			$controller->index($getVars);	
+			$controller->index($this->getVars);	
+		}
+	}
+
+	private function throw_error()
+	{
+		if (file_exists('application/controllers/serverErrors.php')) {
+			include_once 'application/controllers/serverErrors.php';
+
+			if (method_exists('ServerErrors_Controller', 'error_404')) {
+				$controller = new ServerErrors_Controller();
+				$controller->error_404($this->getVars);
+				exit();
+			} else {
+				die('Page does not exist.');
+			}
+		} else {
+			die('Page does not exist.');
 		}
 	}
 }
