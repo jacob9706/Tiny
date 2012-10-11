@@ -10,4 +10,4 @@ define('DS', DIRECTORY_SEPARATOR);
 require_once 'system' . DS . 'core' . DS . 'Router.php';
 
 $router = new Router();
-$router->route($_SERVER['PATH_INFO']);
+$router->route(!empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : "");

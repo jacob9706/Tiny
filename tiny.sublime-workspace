@@ -227,7 +227,7 @@
 			"file": "system/helpers/database.php",
 			"settings":
 			{
-				"buffer_size": 9668,
+				"buffer_size": 10105,
 				"line_ending": "Unix"
 			}
 		}
@@ -638,15 +638,15 @@
 					"file": "system/helpers/database.php",
 					"settings":
 					{
-						"buffer_size": 9668,
+						"buffer_size": 10105,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6174,
-								6174
+								0,
+								0
 							]
 						],
 						"settings":

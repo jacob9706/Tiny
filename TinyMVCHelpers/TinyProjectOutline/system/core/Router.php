@@ -15,9 +15,14 @@ class Router {
 
 	public function __construct()
 	{
+	}
+
+	public function route($pathInfo)
+	{
 		// Get the passed request
-		if (!empty($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] != "/") {
-			$request = 	rtrim($_SERVER['PATH_INFO'], '/');
+		if (!empty($pathInfo) && $pathInfo != "/") {
+			// Trim off last / to avoid empty variable in our created emulaated get variables
+			$request = 	rtrim($pathInfo, '/');
 
 			// Explode and get variables
 			$parsed = explode('/', $request);
@@ -36,7 +41,7 @@ class Router {
 
 		// The method is second element
 		$method = array_shift($parsed);
-		urldecode($method);
+		$method = urldecode($method);
 
 		$method = empty($method) ? 'index' : $method;
 

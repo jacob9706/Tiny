@@ -40,4 +40,9 @@ class HTML
 	{
 		return '<script src="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" type="' . $type . '"></script>';
 	}
+
+	public function create_img($file, $alt="image", $width="", $height="")
+	{
+		return '<img src="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" alt="' . $alt . '" width="' . $width . '" height="' . $height . '"/>';
+	}
 }
