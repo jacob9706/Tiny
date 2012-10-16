@@ -11,10 +11,10 @@ class Database
 	{
 		try {
 			if ($GLOBALS['CONFIG_DB']['type'] == 'mssql' || $GLOBALS['CONFIG_DB']['type'] == 'sybase') {
-				$this->dbh = new PDO("{$GLOBALS['CONFIG_DB']['type']}:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}, {$GLOBALS['CONFIG_DB']['user']}, {$GLOBALS['CONFIG_DB']['password']}");
+				$this->dbh = new PDO("{$GLOBALS['CONFIG_DB']['type']}:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}, {$GLOBALS['CONFIG_DB']['user_name']}, {$GLOBALS['CONFIG_DB']['password']}");
 			} elseif ($GLOBALS['CONFIG_DB']['type'] == 'mysql') {
   			// MySQL with PDO_MYSQL
-				$this->dbh = new PDO("mysql:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}", $GLOBALS['CONFIG_DB']['user'], $GLOBALS['CONFIG_DB']['password']);  
+				$this->dbh = new PDO("mysql:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}", $GLOBALS['CONFIG_DB']['user_name'], $GLOBALS['CONFIG_DB']['password']);  
 			} elseif ($GLOBALS['CONFIG_DB']['type'] == 'sqlite') {
   			// SQLite Database
 				$this->dbh = new PDO("sqlite:{$GLOBALS['CONFIG_DB']['db_name']}");

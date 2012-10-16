@@ -14,6 +14,6 @@ class Index_Controller extends Tiny_Controller
 		// Pass the mocked get array to the view to be displayed
 		$data['getVars'] = $getVars;
 
-		$this->load->view(array('templates/header', 'index', 'templates/footer'), $data);
+		$this->load->view('index', $data);
 	}
 }

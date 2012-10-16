@@ -2,6 +2,8 @@
 
 class Post_Controller extends Tiny_Controller
 {
+	private $data = array();
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -11,42 +13,39 @@ class Post_Controller extends Tiny_Controller
 		// Load in helper(s)
 		$this->load('helper', 'html');
 		$this->load('helper', 'forms');
-		// These loads can be done on construction or individually in each method.
+
+		// Assign helpers to data array to be passed to views
+		$this->data['html'] = $this->html;
+		$this->data['form'] = $this->forms;
 	}
 
 	public function index($vars)
 	{
 		if (isset($_POST['search'])) {
-			$data['posts'] = $this->model->post->search_posts($_POST['search']);
+			$this->data['posts'] = $this->model->post->search_posts($_POST['search']);
 		}else {
-			$data['posts'] = $this->model->post->get_post('all');			
+			$this->data['posts'] = $this->model->post->get_post('all');			
 		}
-		$data['title'] = "Post List";
-		// Pass HTML helper to view
-		$data['html'] = $this->html;
-		// Optionally you could rener the html here and pass a string to echo
-
-		$data['form'] = $this->forms;
-
-		$this->load->view(array('templates/header', 'posts', 'templates/footer'), $data);
+		$this->data['title'] = "Post List";
+		
+		$this->load->view(array('templates/header', 'posts', 'templates/footer'), $this->data);
 	}
 
 	// Add a paramater to show to allow the url variables to be passed to the method
 	public function show($getVars)
 	{
 		$post_data = $this->model->post->get_post($getVars['id']);
-		$data = array(
-			'html' => $this->html,
-			'post' => $post_data,
-			'title' => $post_data['title']
-		);
 
-		if (!empty($data['post'])) {
-			$this->load->view(array('templates/header','post', 'templates/footer'), $data);
+		$this->data['post'] = $post_data;
+
+		$this->data['title'] = $post_data['title'];
+
+		if (!empty($this->data['post'])) {
+			$this->load->view(array('templates/header','post', 'templates/footer'), $this->data);
 		} else {
-			$this->load->view('templates/header');
+			$this->load->view('templates/header', $this->data);
 			echo '<h2>Post Does Not Exist</h2>';
-			$this->load->view('templates/footer');
+			$this->load->view('templates/footer', $this->data);
 		}
 	}
 
@@ -60,7 +59,7 @@ class Post_Controller extends Tiny_Controller
 			'form' => $this->forms,
 			'html' => $this->html
 		);
-		$this->load->view('form', $data);
+		$this->load->view(array('templates/header', 'form', 'templates/footer'), $data);
 	}
 
 	public function create_post($data)

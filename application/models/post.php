@@ -32,8 +32,8 @@ class Post_Model extends Tiny_Model
 		$this->database->where(array('title', 'post'), 'LIKE', array("%{$search_string}%", "%{$search_string}%"), array('OR'));
 		// Execute query which ends up being "SELECT id, title FROM posts WHERE title LIKE '%{$searchString}%'"
 		
-		// Limit the ammount of results to 5
-		$this->database->limit(0, 5);
+		// Limit the ammount of results to 10
+		$this->database->limit(0, 10);
 
 		// True is saying fetch my results for me, a second bool determines wheather to get an associative array or both (default true)
 		return $this->database->get(true);

@@ -10,9 +10,13 @@ class Helpers_Controller extends Tiny_Controller
 	public function status($vars)
 	{
 		$this->load('helper', 'html');
+		$vars = array(
+			'html' => $this->html,
+			'message' => $vars['message']
+		);
 
 		$this->load->view(array('templates/header', 'helpers/status'), $vars);
-		echo $link = $this->html->create_a('post', 'new_post', 'Try Again');
-		$this->load->view('templates/footer');
+		echo $link = $this->html->create_a('post', 'index', 'View Posts');
+		$this->load->view('templates/footer', $vars);
 	}
 }

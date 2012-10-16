@@ -7,7 +7,7 @@ $form->add("SubmitElement", array('submit', 'submit', '', 'Search'));
 $form->render();
 ?>
 
-<table>
+<table class="table table-striped">
     <tr>
         <th>Id</th>
         <th>Title</th>
