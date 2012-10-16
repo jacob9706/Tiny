@@ -43,4 +43,11 @@ class Post_Model extends Tiny_Model
 	{
 		return $this->database->insert('posts', array('id' => null, 'title' => $title, 'post' => $post));
 	}
+
+	public function remove_post($postId)
+	{
+		$this->database->delete('posts');
+		$this->database->where('id', '=', $postId);
+		return $this->database->go();
+	}
 }

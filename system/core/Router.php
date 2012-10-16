@@ -11,7 +11,9 @@ require_once 'system' . DS . 'core' . DS . 'Controller.php';
 require_once 'system' . DS . 'core' . DS . 'View.php';
 
 class Router {
-	private $getVars;
+	private 
+		$getVars,
+		$postVars = array();
 
 	public function __construct()
 	{
@@ -56,6 +58,10 @@ class Router {
 			}
 		}
 
+		if (!empty($_POST)) {
+			$this->postVars = $_POST;
+		}
+
 		// Make path to the file
 		$target = 'application' . DS . 'controllers' . DS . $page . '.php';
 
@@ -75,12 +81,12 @@ class Router {
 
 		if (!empty($method)) {
 			if(method_exists($controller, $method)) {
-				$controller->$method($this->getVars);
+				$controller->$method($this->getVars, $this->postVars);
 			} else {
 				$this->throw_error();
 			}
 		} else {
-			$controller->index($this->getVars);	
+			$controller->index($this->getVars, $this->postVars);
 		}
 	}
 
@@ -91,7 +97,7 @@ class Router {
 
 			if (method_exists('ServerErrors_Controller', 'error_404')) {
 				$controller = new ServerErrors_Controller();
-				$controller->error_404($this->getVars);
+				$controller->error_404($this->getVars, $this->postVars);
 				exit();
 			} else {
 				die('Page does not exist.');

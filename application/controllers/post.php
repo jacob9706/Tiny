@@ -49,11 +49,11 @@ class Post_Controller extends Tiny_Controller
 		}
 	}
 
-	public function new_post()
+	public function new_post($getVars, $postVars)
 	{
 		// Check if user put in data, and if so redirect to the create_post method
-		if (!empty($_POST['title']) && !empty($_POST['post'])) {
-			$this->load->redirect('post', 'create_post', $_POST);
+		if (!empty($postVars['title']) && !empty($postVars['post'])) {
+			$this->load->redirect('post', 'create_post', $postVars);
 		}
 		$data = array(
 			'form' => $this->forms,
@@ -70,6 +70,21 @@ class Post_Controller extends Tiny_Controller
 		} else {
 			// Redirect to a failure page
 			$this->load->redirect('helpers', 'status', array('message' => 'Post not created, please try again.'));
+		}
+	}
+
+	public function remove_post($data)
+	{
+		if ($data['id']) {
+			$rowsAffected = $this->model->post->remove_post($data['id']);
+			echo $rowsAffected;
+			if ($rowsAffected >= 1) {
+				$this->load->redirect('helpers', 'status', array('message' => 'Post successfully deleted.'));
+			} else {
+				$this->load->redirect('helpers', 'status', array('message' => 'Post not deleted, something went wrong.'));
+			}
+		} else {
+			$this->load->redirect('helpers', 'status', array('message' => 'Nothing Deleted, Id not set'));
 		}
 	}
 }

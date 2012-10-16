@@ -11,14 +11,18 @@ $form->render();
     <tr>
         <th>Id</th>
         <th>Title</th>
+        <th>Remove</th>
     </tr>
 
     <!-- Here is where we loop through our $posts array, printing out post info -->
     <?php foreach ($posts as $post): ?>
     <tr>
-        <td><?php echo $html->create_a('post', 'show', $post['id'], array('id' =>$post['id'])); ?></td>
+        <td><?php echo $html->create_a('post', 'show', $post['id'], array('id' => $post['id'])); ?></td>
         <td>
-            <?php echo $html->create_a('post', 'show', $post['title'], array('id' =>$post['id'])); ?>
+            <?php echo $html->create_a('post', 'show', $post['title'], array('id' => $post['id'])); ?>
+        </td>
+        <td>
+            <?php echo $html->create_a('post', 'remove_post', 'Delete', array('id' => $post['id']), 'class="btn btn-warning"'); ?>
         </td>
     </tr>
     <?php endforeach; ?>

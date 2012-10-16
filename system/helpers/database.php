@@ -96,6 +96,29 @@ class Database
 		}
 	}
 
+	public function delete($fromTable)
+	{
+		$this->query = 'DELETE FROM ' . $fromTable;
+	}
+
+	public function go($count = true)
+	{
+		$results = $this->dbh->prepare($this->query);
+		if (is_array($this->values)) {
+			$results->execute($this->values);			
+		} else if (!empty($this->values)){
+			$results->execute(array($this->values));
+		} else {
+			$results->execute();
+		}
+
+		if ($count) {
+			return $results->rowCount();
+		} else {
+			return $results;
+		}
+	}
+
 	/**
 	 * Add WHERE statement to existing query
 	 * @param  [type] $columns a string value or a indexed array
