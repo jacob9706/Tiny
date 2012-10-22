@@ -48,6 +48,6 @@ class Post_Model extends Tiny_Model
 	{
 		$this->database->delete('posts');
 		$this->database->where('id', '=', $postId);
-		return $this->database->go();
+		return 	$this->database->go();
 	}
 }

@@ -53,10 +53,14 @@ class Database
 			}
 
 			$query .= '(' . $columns . ')' . ' VALUES(' . $values . ')';
-			echo $query;
-			print_r($executeVar);
+			// echo $query;
+			// print_r($executeVar);
 			$query = $this->dbh->prepare($query);
-			return $query->execute($executeVar);
+			try {
+				return $query->execute($executeVar);
+			} catch(PDOException $e) {
+				return false;
+			}
 		} else {
 			$debug = debug_backtrace();
 			die('Error: Second param of ' . $debug[0]['function'] . '() must be an associative array, ' . $debug[0]['file'] . ": line " . $debug[0]['line']);

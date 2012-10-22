@@ -9,7 +9,7 @@ class Load
 
 	public function helper($helper, &$context)
 	{
-		$file = 'system' . DS . 'helpers' . DS . '' . $helper . '.php';
+		$file = 'system' . DS . 'helpers' . DS . $helper . '.php';
 		if (file_exists($file)) {
 			require_once $file;
 			$class = ucfirst($helper);
@@ -32,7 +32,7 @@ class Load
 		$vars = array();
 		if (is_array($variables)) {
 			foreach ($variables as $key => $value) {
-				$vars[] = urlencode($key) . '=' . urlencode($value);
+				$vars[] = urlencode($key) . '&' . urlencode($value);
 			}
 			$vars = implode("/", $vars);
 		} else {

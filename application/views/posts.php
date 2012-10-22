@@ -22,7 +22,7 @@ $form->render();
             <?php echo $html->create_a('post', 'show', $post['title'], array('id' => $post['id'])); ?>
         </td>
         <td>
-            <?php echo $html->create_a('post', 'remove_post', 'Delete', array('id' => $post['id']), 'class="btn btn-warning"'); ?>
+            <?php echo $html->create_post_a('post', 'remove_post', 'Delete', array('id' => $post['id']), 'class="btn btn-warning"'); ?>
         </td>
     </tr>
     <?php endforeach; ?>

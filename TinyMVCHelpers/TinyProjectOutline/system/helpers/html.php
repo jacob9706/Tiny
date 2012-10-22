@@ -10,7 +10,7 @@ class HTML
 	 * @param  string $variables  This can be an array or string. The array can be associative or indexed
 	 * @return string             A string containing a formated anchor tag
 	 */
-	public function create_a($controller, $method, $text, $variables = "")
+	public function create_a($controller, $method, $text, $variables = "", $extras = "")
 	{
 		$vars = array();
 		if (is_array($variables)) {
@@ -21,7 +21,7 @@ class HTML
 		} else {
 			$vars = $variables;
 		}
-		return '<a href="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $controller . '/' . $method . "/" . $vars . '">' . $text . '</a>';
+		return '<a ' . $extras .' href="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $controller . '/' . $method . "/" . $vars . '">' . $text . '</a>';
 	}
 
 	/**
@@ -41,8 +41,8 @@ class HTML
 		return '<script src="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" type="' . $type . '"></script>';
 	}
 
-	public function create_img($file, $alt="image")
+	public function create_img($file, $alt="image", $width="", $height="")
 	{
-		return '<img src="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" alt="' . $alt . '"/>';
+		return '<img src="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" alt="' . $alt . '" width="' . $width . '" height="' . $height . '"/>';
 	}
 }

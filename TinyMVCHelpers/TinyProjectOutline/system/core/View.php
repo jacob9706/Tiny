@@ -13,7 +13,7 @@ class View_Model
 			$this->render = array();
 			$i = 0;
 			foreach ($templates as $template) {
-				$file = 'application/views/' . strtolower($template) . '.php';
+				$file = 'application' . DS . 'views' . DS . strtolower($template) . '.php';
 
 				if (file_exists($file))
 				{
@@ -24,7 +24,7 @@ class View_Model
 				$i++;
 			}
 		} else {
-			$file = 'application/views/' . strtolower($templates) . '.php';
+			$file = 'application' . DS . 'views' . DS . strtolower($templates) . '.php';
 
 			if (file_exists($file))
 			{

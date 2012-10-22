@@ -9,7 +9,7 @@ class Load
 
 	public function helper($helper, &$context)
 	{
-		$file = 'system/helpers/' . $helper . '.php';
+		$file = 'system' . DS . 'helpers' . DS . '' . $helper . '.php';
 		if (file_exists($file)) {
 			require_once $file;
 			$class = ucfirst($helper);
@@ -19,7 +19,7 @@ class Load
 
 	public function model($model, &$context)
 	{
-		$file = 'application/models/' . $model . '.php';
+		$file = 'application' . DS . 'models' . DS . $model . '.php';
 		if (file_exists($file)) {
 			require_once $file;
 			$class = ucfirst($model) . '_Model';

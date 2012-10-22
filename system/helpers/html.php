@@ -8,6 +8,7 @@ class HTML
 	 * @param  string $method
 	 * @param  string $text
 	 * @param  string $variables  This can be an array or string. The array can be associative or indexed
+	 * @param  string $extras     Put things like 'class="btn"'
 	 * @return string             A string containing a formated anchor tag
 	 */
 	public function create_a($controller, $method, $text, $variables = "", $extras = "")
@@ -22,6 +23,32 @@ class HTML
 			$vars = $variables;
 		}
 		return '<a ' . $extras .' href="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $controller . '/' . $method . "/" . $vars . '">' . $text . '</a>';
+	}
+
+	/**
+	 * Method to help create links that submit a form for post data (BEWARE, THIS RELYS ON JAVASCRIPT BEING ENABLED)
+	 * @param  string $controller 
+	 * @param  string $method     
+	 * @param  string $text       
+	 * @param  Array  $variables  The array can be associative or indexed
+	 * @param  string $extras     Put things like 'class="btn"'
+	 * @return string             A string containing formated link to form
+	 */
+	public function create_post_a($controller, $method, $text, Array $variables, $extras = "")
+	{
+		$vars = "";
+		if (is_array($variables)) {
+			foreach ($variables as $key => $value) {
+				$vars = '<input type="hidden" name="' . $key . '" value="' . $value . '">';
+			}
+		}
+		$id = $this->randString(6);
+		$html = '<script type="text/javascript">function ' . $id . '(){document.forms["' . $id . '"].submit();}</script>';
+		$html .= '<form style="display: none; visibility: hidden;" action="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $controller . '/' . $method . '" id="' . $id .'" method="post">';
+		$html .= $vars;
+		$html .= '</form>';
+		$html .= '<a ' . $extras .' href="javascript: ' . $id .'()">' . $text . '</a>';
+		return $html;
 	}
 
 	/**
@@ -44,5 +71,15 @@ class HTML
 	public function create_img($file, $alt="image", $width="", $height="")
 	{
 		return '<img src="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" alt="' . $alt . '" width="' . $width . '" height="' . $height . '"/>';
+	}
+
+	private function randString($length, $charset='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')
+	{
+		$str = '';
+		$count = strlen($charset);
+		while ($length--) {
+			$str .= $charset[mt_rand(0, $count-1)];
+		}
+		return $str;
 	}
 }

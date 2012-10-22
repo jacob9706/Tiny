@@ -1,17 +1,19 @@
 <?php
 
 // Load Config Files
-require_once 'system/config/General.php';
-require_once 'system/config/Database.php';
+require_once 'system' . DS . 'config' . DS . 'General.php';
+require_once 'system' . DS . 'config' . DS . 'Database.php';
 
 // Load Nessesary Classes
-require_once 'system/core/Tools.php';
-require_once 'system/core/Model.php';
-require_once 'system/core/Controller.php';
-require_once 'system/core/View.php';
+require_once 'system' . DS . 'core' . DS . 'Tools.php';
+require_once 'system' . DS . 'core' . DS . 'Model.php';
+require_once 'system' . DS . 'core' . DS . 'Controller.php';
+require_once 'system' . DS . 'core' . DS . 'View.php';
 
 class Router {
-	private $getVars;
+	private 
+		$getVars,
+		$postVars = array();
 
 	public function __construct()
 	{
@@ -56,8 +58,12 @@ class Router {
 			}
 		}
 
+		if (!empty($_POST)) {
+			$this->postVars = $_POST;
+		}
+
 		// Make path to the file
-		$target = 'application/controllers/' . $page . '.php';
+		$target = 'application' . DS . 'controllers' . DS . $page . '.php';
 
 		if (file_exists($target)) {
 			include_once $target;
@@ -75,23 +81,23 @@ class Router {
 
 		if (!empty($method)) {
 			if(method_exists($controller, $method)) {
-				$controller->$method($this->getVars);
+				$controller->$method($this->getVars, $this->postVars);
 			} else {
 				$this->throw_error();
 			}
 		} else {
-			$controller->index($this->getVars);	
+			$controller->index($this->getVars, $this->postVars);
 		}
 	}
 
 	private function throw_error()
 	{
-		if (file_exists('application/controllers/serverErrors.php')) {
-			include_once 'application/controllers/serverErrors.php';
+		if (file_exists('application' . DS . 'controllers' . DS . 'serverErrors.php')) {
+			include_once 'application' . DS . 'controllers' . DS . 'serverErrors.php';
 
 			if (method_exists('ServerErrors_Controller', 'error_404')) {
 				$controller = new ServerErrors_Controller();
-				$controller->error_404($this->getVars);
+				$controller->error_404($this->getVars, $this->postVars);
 				exit();
 			} else {
 				die('Page does not exist.');

@@ -11,10 +11,10 @@ class Database
 	{
 		try {
 			if ($GLOBALS['CONFIG_DB']['type'] == 'mssql' || $GLOBALS['CONFIG_DB']['type'] == 'sybase') {
-				$this->dbh = new PDO("{$GLOBALS['CONFIG_DB']['type']}:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}, {$GLOBALS['CONFIG_DB']['user']}, {$GLOBALS['CONFIG_DB']['password']}");
+				$this->dbh = new PDO("{$GLOBALS['CONFIG_DB']['type']}:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}, {$GLOBALS['CONFIG_DB']['user_name']}, {$GLOBALS['CONFIG_DB']['password']}");
 			} elseif ($GLOBALS['CONFIG_DB']['type'] == 'mysql') {
   			// MySQL with PDO_MYSQL
-				$this->dbh = new PDO("mysql:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}", $GLOBALS['CONFIG_DB']['user'], $GLOBALS['CONFIG_DB']['password']);  
+				$this->dbh = new PDO("mysql:host={$GLOBALS['CONFIG_DB']['host']};dbname={$GLOBALS['CONFIG_DB']['db_name']}", $GLOBALS['CONFIG_DB']['user_name'], $GLOBALS['CONFIG_DB']['password']);  
 			} elseif ($GLOBALS['CONFIG_DB']['type'] == 'sqlite') {
   			// SQLite Database
 				$this->dbh = new PDO("sqlite:{$GLOBALS['CONFIG_DB']['db_name']}");
@@ -93,6 +93,29 @@ class Database
 			$this->query .= ' FROM ' . $table;
 		} else {
 			$this->query = 'SELECT ' . $columns . ' FROM ' . $table;			
+		}
+	}
+
+	public function delete($fromTable)
+	{
+		$this->query = 'DELETE FROM ' . $fromTable;
+	}
+
+	public function go($count = true)
+	{
+		$results = $this->dbh->prepare($this->query);
+		if (is_array($this->values)) {
+			$results->execute($this->values);			
+		} else if (!empty($this->values)){
+			$results->execute(array($this->values));
+		} else {
+			$results->execute();
+		}
+
+		if ($count) {
+			return $results->rowCount();
+		} else {
+			return $results;
 		}
 	}
 

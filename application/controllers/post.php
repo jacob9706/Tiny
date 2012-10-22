@@ -19,7 +19,7 @@ class Post_Controller extends Tiny_Controller
 		$this->data['form'] = $this->forms;
 	}
 
-	public function index($vars)
+	public function index($vars, $postVars)
 	{
 		if (isset($_POST['search'])) {
 			$this->data['posts'] = $this->model->post->search_posts($_POST['search']);
@@ -73,7 +73,7 @@ class Post_Controller extends Tiny_Controller
 		}
 	}
 
-	public function remove_post($data)
+	public function remove_post($getData, $data)
 	{
 		if ($data['id']) {
 			$rowsAffected = $this->model->post->remove_post($data['id']);

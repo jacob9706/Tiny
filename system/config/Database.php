@@ -38,9 +38,9 @@ $CONFIG_DB['db_name'] = 'application/databases/blog.sqlite';
 //  */
 // $CONFIG_DB['user_name'] = 'root';
 
-// *
+
 //  * Defines your password used for accessing the database. If you are using sqlite leave this blank.
- 
+  
 // $CONFIG_DB['password'] = 'root';
 
 // /**

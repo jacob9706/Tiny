@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Load Config Files
 require_once 'system' . DS . 'config' . DS . 'General.php';
 require_once 'system' . DS . 'config' . DS . 'Database.php';
@@ -12,7 +14,7 @@ require_once 'system' . DS . 'core' . DS . 'View.php';
 
 class Router {
 	private 
-		$getVars,
+		$getVars = array(),
 		$postVars = array();
 
 	public function __construct()
@@ -47,11 +49,10 @@ class Router {
 
 		$method = empty($method) ? 'index' : $method;
 
-		$this->getVars = array();
 		foreach ($parsed as $argument) {
-			if (strpos($argument, "=")) {
+			if (strpos($argument, "&")) {
 				// Split GET vars along "=" symbol to separate variable => values
-				list($variable, $value) = explode('=', $argument);
+				list($variable, $value) = explode('&', $argument);
 				$this->getVars[urldecode($variable)] = urldecode($value);
 			} else {
 				$this->getVars[] = urldecode($argument);
