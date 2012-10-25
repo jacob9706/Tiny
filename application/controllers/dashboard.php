@@ -1,6 +1,6 @@
 <?php
 
-class Index_Controller extends Tiny_Controller
+class Dashboard_Controller extends Tiny_Controller
 {
 	private $data = array();
 
@@ -19,15 +19,11 @@ class Index_Controller extends Tiny_Controller
 		$this->data['register_form'] = $this->register_form;
 	}
 
-	public function index()
+	public function home()
 	{
-		$this->data['title'] = "Home";
-		$this->load->view(array('templates/header', 'app/index', 'templates/footer'), $this->data);
-	}
-
-	public function about()
-	{
-		$this->data['title'] = "About";
-		$this->load->view(array('templates/header', 'templates/footer'), $this->data);
+		$this->users->require_login(1, 'index', 'index');
+		$this->load->view('templates/header', $this->data);
+		echo 'Dashboard Loaded.';
+		$this->load->view('templates/footer', $this->data);
 	}
 }

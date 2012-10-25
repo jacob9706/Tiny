@@ -16,7 +16,7 @@ class HTML
 		$vars = array();
 		if (is_array($variables)) {
 			foreach ($variables as $key => $value) {
-				$vars[] = urlencode($key) . '=' . urlencode($value);
+				$vars[] = urlencode($key) . '&' . urlencode($value);
 			}
 			$vars = implode("/", $vars);
 		} else {
@@ -71,6 +71,11 @@ class HTML
 	public function create_img($file, $alt="image", $width="", $height="")
 	{
 		return '<img src="http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . $file . '" alt="' . $alt . '" width="' . $width . '" height="' . $height . '"/>';
+	}
+
+	public function create_url($controller, $method)
+	{
+		return 'http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . $controller . '/' . $method;
 	}
 
 	private function randString($length, $charset='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')

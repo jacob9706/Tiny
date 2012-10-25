@@ -2,10 +2,10 @@
 
 class Users
 {
-	public function require_login($level = 1)
+	public function require_login($level = 1, $controller = '', $method = '')
 	{
 		if (!$_SESSION['user_status'] || $_SESSION['user_level'] < $level) {
-			header('Location: http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/serverErrors/404');
+			header('Location: http://' . $_SERVER['HTTP_HOST'] . array_shift(explode("index.php", $_SERVER['REQUEST_URI'])) . 'index.php/' . (empty($controller) ? 'serverErrors/404' : $controller . '/' . $method));
 		}
 	}
 

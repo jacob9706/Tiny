@@ -49,6 +49,8 @@ class Router {
 
 		$method = empty($method) ? 'index' : $method;
 
+		$GLOBALS['page'] = $method;
+
 		foreach ($parsed as $argument) {
 			if (strpos($argument, "&")) {
 				// Split GET vars along "=" symbol to separate variable => values
@@ -58,6 +60,8 @@ class Router {
 				$this->getVars[] = urldecode($argument);
 			}
 		}
+
+		$GLOBALS['getVars'] = $this->getVars;
 
 		if (!empty($_POST)) {
 			$this->postVars = $_POST;

@@ -6,32 +6,64 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <?php echo $html->create_a('post', 'index', 'Tiny MVC <small style="font-size: small;">Developed by jacob9706</small>', '', 'class="brand"'); ?>
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li class="active"><?php echo $html->create_a('post', 'index', 'Home'); ?></li>
-                    <!-- Test Dropdown -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="nav-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <!--
-                <form class="navbar-form pull-right">
-                    <input class="span2" type="text" placeholder="Email">
-                    <input class="span2" type="password" placeholder="Password">
-                    <button type="submit" class="btn">Sign in</button>
-                </form>
-                -->
-            </div><!--/.nav-collapse -->
+            <?php echo $html->create_a('index', 'index', 'Logo Here', '', 'class="brand" style="color: #00cc33;"'); ?>
+            
+            <?php if (!$users->get_status()): ?>
+                <div class="nav-collapse collapse pull-right">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#nav-register">Register</button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#nav-login">Sign In</button>
+                </div><!--/.nav-collapse -->
+            <?php else: ?>
+                <div class="nav-collapse collapse pull-right">
+                    <?php echo $html->create_a('dashboard', 'home', 'Dashboard', '', 'class="btn btn-success"'); ?>
+                    <?php echo $html->create_a('admin', 'logout', 'Logout', '', 'class="btn btn-danger"'); ?>
+                </div>
+            <?php endif; ?>
         </div>
+    </div>
+</div>
+
+<div id="nav-login" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Login</h3>
+    </div>
+    <div class="modal-body">
+
+        <?php
+        $login_error = empty($GLOBALS['getVars']['login_error']) ? null : $GLOBALS['getVars']['login_error'];
+        if (!empty($login_error)): ?>
+        <p style="color: red;"><?php echo $login_error; ?></p>
+        <?php endif;
+
+        $login_form->setup('login', 'admin/login');
+        $login_form->add('TextElement', array('username', 'username', '', 'Username'));
+        $login_form->add('PasswordElement', array('password', 'password', '', 'Password'));
+        $login_form->add('SubmitElement', array('login', 'login', 'btn btn-success', 'Login'));
+        echo $login_form->render('', '', '', '<br>');
+        ?>
+    </div>
+</div>
+
+<div id="nav-register" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Register</h3>
+    </div>
+    <div class="modal-body">
+        <?php
+        $register_error = empty($GLOBALS['getVars']['register_error']) ? null : $GLOBALS['getVars']['register_error'];
+        if (!empty($register_error)): ?>
+        <p style="color: red;"><?php echo $register_error; ?></p>
+        <?php endif;
+
+        $register_form->setup('register', 'admin/register');
+        $register_form->add("TextElement", array('username', 'username', '', 'Username'));
+        $register_form->add("TextElement", array('email', 'email', '', 'Email'));
+        $register_form->add("PasswordElement", array('pass1', 'pass1', '', 'Password'));
+        $register_form->add("PasswordElement", array('pass2', 'pass2', '', 'Password Again'));
+        $register_form->add("SubmitElement", array('submit', 'submit', '', 'Submit'));
+        $register_form->render('', '', '', '<br>');
+        ?>
     </div>
 </div>

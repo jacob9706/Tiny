@@ -97,6 +97,23 @@ class TextElement extends FormElement
     }
 }
 
+class TextElementNoLabel extends FormElement
+{
+    public function __construct($args)
+    {
+        parent::__construct($args);
+    }
+
+    public function generateHTML()
+    {
+        $html = "<input type='text' name='{$this->name}' id='{$this->id}' class='{$this->class}' placeholder='{$this->label}'";
+        $html .= !empty($_POST[$this->name]) ? " value='{$_POST[$this->name]}'" : "";
+        $html .= ">";
+
+        return $html;
+    }
+}
+
 /**
  * Password Text Input
  */
@@ -111,6 +128,21 @@ class PasswordElement extends FormElement
     {
         $html = "<label for='{$this->id}'>{$this->label}</label>";
         $html .= "<input type='password' name='{$this->name}' id='{$this->id}' class='{$this->class}'>";
+
+        return $html;
+    }
+}
+
+class PasswordElementNoLabel extends FormElement
+{
+    public function __construct($args)
+    {
+        parent::__construct($args);
+    }
+
+    public function generateHTML()
+    {
+        $html = "<input type='password' name='{$this->name}' id='{$this->id}' class='{$this->class}' placeholder='{$this->label}'>";
 
         return $html;
     }

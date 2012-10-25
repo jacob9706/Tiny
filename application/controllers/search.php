@@ -1,6 +1,6 @@
 <?php
 
-class Index_Controller extends Tiny_Controller
+class Search_Controller extends Tiny_Controller
 {
 	private $data = array();
 
@@ -17,17 +17,5 @@ class Index_Controller extends Tiny_Controller
 		$this->data['users'] = $this->users;
 		$this->data['login_form'] = $this->login_form;
 		$this->data['register_form'] = $this->register_form;
-	}
-
-	public function index()
-	{
-		$this->data['title'] = "Home";
-		$this->load->view(array('templates/header', 'app/index', 'templates/footer'), $this->data);
-	}
-
-	public function about()
-	{
-		$this->data['title'] = "About";
-		$this->load->view(array('templates/header', 'templates/footer'), $this->data);
 	}
 }

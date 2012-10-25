@@ -14,4 +14,10 @@ class Tools
 	{
 		$this->load->$type($what, $this);
 	}
+
+	public function load_as($type, $what, $as)
+	{
+		$type .= '_as';
+		$this->load->$type($what, $as, $this);
+	}
 }
